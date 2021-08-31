@@ -1,5 +1,5 @@
 {
-  "commitMessage": "mbp vault backup: {{date}}",
+  "commitMessage": "mbp13 vault backup: {{date}}",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 10,
   "autoPullInterval": 0,
