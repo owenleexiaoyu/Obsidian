@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Watch And Read（2021-08）.md",
-            "mode": "preview"
+            "file": "Obsidian 图床.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Watch And Read（2021-08）.md",
+                "file": "Obsidian 图床.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,9 +88,9 @@
   },
   "active": "e04f8233ff5bc5fe",
   "lastOpenFiles": [
+    "Untitled.md",
     "Watch And Read（2021-08）.md",
     "Watch And Read（2021-07）.md",
-    "Untitled.md",
     "Obsidian 初体验.md",
     "Watch And Read（2021-05）.md",
     "Watch And Read（2021-06）.md",
