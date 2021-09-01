@@ -4,4 +4,10 @@
 
 今天就准备折腾一下图床，首先是通过 [Obsidian 图床工具](https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/%E5%9B%BE%E5%BA%8A%E5%B7%A5%E5%85%B7) 这篇博客被安利了一个软件 [PicGo](https://picgo.github.io/PicGo-Doc/)。这是一个图片上传工具，可以方便地把本地的图片上传到配置好的图床，内置就支持多种图床，如：sm.ms、七牛云、阿里云等，还可以下载插件上传到其他的第三方图床，如 Gitee 等。
 
-这里遇到一个坑，安装好 PicGo 之后，点击软件一直没反应，搞得我还卸载重装好几遍，后来在它 Github 的issue
+这里遇到一个坑，安装好 PicGo 之后，点击软件一直没反应，搞得我还卸载重装好几遍，后来在它 Github 的 issue 里看到，需要右键状态栏里的小图标，然后选择「打开详细窗口」，才可以打开主界面。也是真的坑。
+
+然后我又照着 [如何使用Typora配置免费的gitee图床](https://zhuanlan.zhihu.com/p/338554751) 这篇文章，搞了一个 Gitee 的仓库来作为存放图片的图床，选择 Gitee 的原因一个是 sm.ms 这种不知道啥时候会停止服务，还是大公司比较安全，另一个原因就是 Github 是国外的，访问速度堪忧，并且还可能会被墙掉。
+
+中途一些脑残操作略过不表，经过这一番折腾，现在已经可以使用顺利使用图床了。
+
+![obsidian](https://gitee.com/owenlee233/image_store/raw/master/202109020047769.png)
