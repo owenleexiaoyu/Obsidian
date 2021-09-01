@@ -10,7 +10,7 @@
           "type": "markdown",
           "state": {
             "file": "Obsidian 图床.md",
-            "mode": "source"
+            "mode": "preview"
           }
         }
       }
@@ -48,7 +48,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -74,7 +75,7 @@
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
+                "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
@@ -83,8 +84,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "active": "e04f8233ff5bc5fe",
   "lastOpenFiles": [
