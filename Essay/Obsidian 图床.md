@@ -10,4 +10,9 @@
 
 中途一些脑残操作略过不表，经过这一番折腾，现在已经可以使用顺利使用图床了。
 
+然后再总结一下使用方式：
+1. 截图（这个我用的最多）、或者选取图片
+2. 打开 PicGo，点击「剪切板图片」，可以快捷上传；或者使用「Command+Shift+P」快捷键上传
+3. PicGo 可以设置上传成功后，自动拷贝 Markdown 格式的图片 URL，直接在 Obsidian 中粘贴即可
+
 ![obsidian](https://gitee.com/owenlee233/image_store/raw/master/202109020047769.png)

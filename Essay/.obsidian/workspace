@@ -7,11 +7,8 @@
         "id": "e04f8233ff5bc5fe",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Obsidian 图床.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian 图床.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +84,15 @@
   },
   "active": "e04f8233ff5bc5fe",
   "lastOpenFiles": [
-    "Untitled.md",
-    "Watch And Read（2021-08）.md",
-    "Watch And Read（2021-07）.md",
+    "Obsidian 图床.md",
     "Obsidian 初体验.md",
-    "Watch And Read（2021-05）.md",
+    "Watch And Read（2021-08）.md",
     "Watch And Read（2021-06）.md",
-    "Watch And Read（2021-04）.md",
+    "Watch And Read（2021-05）.md",
     "Watch And Read（2021-03）.md",
     "Watch And Read（2021-02）.md",
-    "Watch And Read（2021-01）.md"
+    "Watch And Read（2021-01）.md",
+    "Untitled.md",
+    "Watch And Read（2021-07）.md"
   ]
 }
