@@ -16,3 +16,10 @@
 3. PicGo 可以设置上传成功后，自动拷贝 Markdown 格式的图片 URL，直接在 Obsidian 中粘贴即可
 
 ![obsidian](https://gitee.com/owenlee233/image_store/raw/master/202109020047769.png)
+
+---
+
+更新：掌握了更加高效的操作方式。
+
+给 Typora 配置了一下上面文章提到的东西，发现可以直接截图或者复制图片后，在 Typora 中粘贴，这时会弹出一个小弹窗，点一下「上传图片」，就可以直接通过 PicGo 上传到图床了，这可太方便了。于是就试着在 Obsidian 插件广场上找找，看看有没有类似的插件，结果还真让我找到一个：[obsidian-imgur-plugin](https://github.com/gavvvr/obsidian-imgur-plugin)
+
