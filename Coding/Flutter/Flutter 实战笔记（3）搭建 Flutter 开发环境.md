@@ -2,32 +2,34 @@
 
 由于 Flutter 会同时构建 Android 和 iOS 两个平台的发布包，所以 Flutter 同时依赖 Android 和 iOS SDK，在安装 Flutter 时，也需要安装相应平台的构建工具和 SDK。
 
-使用镜像
+### 使用镜像
 
-在国内访问flutter有时可能会受到限制，flutter官方为中国开发者搭建了临时镜像，可以将如下环境变量加到用户环境变量中：
+在国内访问 Flutter 有时可能会受到限制，官方为中国开发者搭建了临时镜像，可以将如下环境变量加到用户环境变量中（临时镜像并不保证一直可用，可以在 https://flutter.cn/ 上查看最新的镜像）：
 
 ```
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ```
 
-在macOS 上搭建Flutter开发环境
+### 在 macOS 上搭建 Flutter 开发环境
 
-在macOS上可以同时进行Android和iOS设备的测试。
+Window 和 Linux 搭建开发环境可直接参考 [官方文档 Install 章节](https://flutter.dev/docs/get-started/install)。这篇笔记就不写了。
 
-系统要求
+在 macOS 上可以同时进行 Android 和 iOS 设备的测试。
 
-操作系统：macOS(64bit)
+#### 系统要求
 
-磁盘空间：2.8GB(不包含IDE和工具的空间)
+操作系统：macOS（64bit）
 
-工具：Flutter使用git来安装和升级。
+磁盘空间：2.8GB（不包含 IDE 和工具的空间）
 
-获取Flutter SDK
+工具：Flutter 使用 git 来安装和升级。
 
-可以从https://flutter.dev/docs/development/tools/sdk/releases 下载SDK，解压缩。
+#### 获取Flutter SDK
 
-配置环境变量：
+1. 从 [官方 SDK 下载地址]( https://flutter.dev/docs/development/tools/sdk/releases) 下载 SDK，解压缩到目标文件夹，例如我的是（～）。
+
+2. 配置环境变量：
 
 打开（或创建 $HOME/.bash_profile）
 
