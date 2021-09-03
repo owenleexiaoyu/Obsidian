@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "扫雷游戏中的算法.md",
+            "file": "Flutter  笔记（1）跨平台技术.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "扫雷游戏中的算法.md",
+                "file": "Flutter  笔记（1）跨平台技术.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +88,7 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
-    "扫雷游戏中的算法.md",
-    "Untitled.md"
+    "Untitled.md",
+    "扫雷游戏中的算法.md"
   ]
 }
