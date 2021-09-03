@@ -1,3 +1,5 @@
+> 本系列是 [Flutter 实战](https://book.flutterchina.club/) 这本书的学习笔记。
+
 ## 原生开发
 
 原生应用：某个移动平台所的特有的应用，使用对应平台支持的开发工具和语言，并直接调用系统提供的 SDK API。比如 Android 使用 Java 或 Kotlin 开发，iOS 使用 Objective-C 或 Swift 开发，它们就被称为原生开发。

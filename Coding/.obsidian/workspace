@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter  笔记（1）跨平台技术.md",
-            "mode": "preview"
+            "file": "Flutter 实战笔记（2）初识 Flutter.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter  笔记（1）跨平台技术.md",
+                "file": "Flutter 实战笔记（2）初识 Flutter.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +89,7 @@
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
     "Untitled.md",
+    "Flutter/Flutter  实战笔记（1）跨平台技术.md",
     "扫雷游戏中的算法.md"
   ]
 }
