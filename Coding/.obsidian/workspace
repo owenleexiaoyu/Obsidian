@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter/Flutter 实战笔记（2）初识 Flutter.md",
-            "mode": "preview"
+            "file": "Flutter/Flutter 实战笔记（3）搭建 Flutter 开发环境.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/Flutter 实战笔记（2）初识 Flutter.md",
+                "file": "Flutter/Flutter 实战笔记（3）搭建 Flutter 开发环境.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,9 +88,9 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "Untitled.md",
     "Flutter/Flutter 实战笔记（2）初识 Flutter.md",
     "扫雷游戏中的算法.md",
-    "Flutter/Flutter  实战笔记（1）跨平台技术.md",
-    "Untitled.md"
+    "Flutter/Flutter  实战笔记（1）跨平台技术.md"
   ]
 }
