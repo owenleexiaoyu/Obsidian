@@ -71,22 +71,21 @@ Dart 是类型安全的语言，支持静态类型检测，所以可以在编译
 
 ## 如何学习 Flutter
 
-资源
+### 资源
 
--   **官网**：阅读Flutter官网的资源是快速入门的最佳方式，同时官网也是了解最新Flutter发展动态的地方
+-   **官网**：阅读 [Flutter 官网](https://flutter.dev/docs) 的文档是快速入门的最佳方式，同时官网也是了解最新 Flutter 发展动态的地方。
 
--   **源码及注释**：源码注释应作为学习Flutter的第一文档，Flutter SDK的源码是开源的，并且注释非常详细，也有很多示例，实际上，Flutter官方的SDK文档就是通过注释生成的。源码结合注释可以帮你解决大多数问题。
+-   **源码及注释**：源码注释应作为学习 Flutter 的第一资料，Flutter SDK的源码是开源的，并且注释非常详细，也有很多示例，实际上，Flutter 官方的 SDK 文档就是通过注释生成的。源码结合注释可以帮你解决大多数问题。
 
--   **Github**：如果遇到的问题在StackOverflow上也没有找到答案，可以去github flutter 项目下提issue
+-   **Github**：如果遇到的问题在 StackOverflow 上也没有找到答案，可以去 [Github Flutter](https://github.com/flutter/flutter) 项目下提 issue。
 
--   **Gallery源码**：Gallery是Flutter官方示例APP，里面有丰富的示例，读者可以在网上下载安装。Gallery的源码在Flutter源码“examples”目录下。
+-   **[Gallery 源码](https://github.com/flutter/gallery)**：Gallery 是 Flutter 官方示例APP，里面有丰富的示例。另外 [Flutter example](https://github.com/flutter/flutter/tree/master/examples) 下也有很多适合入门的示例。
 
-社区
+-   一些优秀的博客
 
--   StackOverflow
--   Flutter中文网社区：https://flutterchina.club，上面提供了Flutter官网的文档翻译、开源项目、及案例
--   博客
+### 社区
 
-总结
+-   [StackOverflow](https://stackoverflow.com/)：这个网站可以搜到大多数常见的开发问题。
+-   [Flutter 中文网社区](https://flutterchina.club)：这个社区提供了 Flutter 官网的文档翻译、开源项目、及案例。
 
 有了资料和社区后，还需要多动手、多实践。
