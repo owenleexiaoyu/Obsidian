@@ -25,48 +25,51 @@ Flutter 的高性能主要靠两点来保证：
 
 动态解释：解释执行是一句一句边翻译便运行，通常将这种类型称为 JIT（Just in time，即时编译），代表非常多，比如 JS、Python 等。事实上，所有的脚本语言都支持JIT模式。
 
-需要注意的是，JIT 和 AOT 指的是程序运行方式，和语言不是强关联的，有些语言既可以以 JIT 方式运行也可以以 AOT 方式运行，如 Java、Python，他们可以在第一次执行是编译成中间字节码，然后在之后的执行中直接执行字节码。虽然中间字节码并非机器码，在运行时还需将字节码转化为机器码，但通常我们区分是否为 AOT 的标准是看代码在执行前是否需要编译，只要需要编译，无论其产物是字节码还是机器码，都属于 AOT。
+> 需要注意的是，JIT 和 AOT 指的是程序运行方式，和语言不是强关联的，有些语言既可以以 JIT 方式运行也可以以 AOT 方式运行，如 Java、Python，他们可以在第一次执行是编译成中间字节码，然后在之后的执行中直接执行字节码。虽然中间字节码并非机器码，在运行时还需将字节码转化为机器码，但通常我们区分是否为 AOT 的标准是看代码在执行前是否需要编译，只要需要编译，无论其产物是字节码还是机器码，都属于 AOT。
 
 ### Flutter 为什么选择 Dart 语言？
 
--   开发效率高
-    -   基于JIT的快速开发周期：Flutter在开发阶段采用JIT模式，这样避免了每次改动都要进行编译，极大节省了开发时间
-    -   基于AOT的发布包：Flutter在发布时，可以通过AOT生成高效的ARM代码以保证应用性能，JS不具备这个能力。
--   高性能
+**1. 开发效率高**
 
-Flutter旨在提供流畅、高保真的UI体验，需要在每个动画帧中运行大量代码，这意味着需要一种能提供高性能的语言，不会出现丢帧的周期性暂停，Dart支持AOT，这点上做的比JS好
+- 基于 JIT 的快速开发周期：Flutter 在开发阶段采用 JIT 模式，这样避免了每次改动都要进行编译，极大节省了开发时间
+- 基于 AOT 的发布包：Flutter 在发布时，可以通过 AOT 生成高效的 ARM 代码以保证应用性能，JS 不具备这个能力。
 
--   快速内存分配
+**2. 高性能**
 
-Flutter框架使用函数式流，很大程度上依赖于底层的内存分配器。拥有一个能够有效处理琐碎任务的内存分配器十分重要，Dart也满足这个条件。
+Flutter 旨在提供流畅、高保真的 UI 体验，需要在每个动画帧中运行大量代码，这意味着需要一种能提供高性能的语言，不会出现丢帧的周期性暂停，Dart 支持 AOT，这点上做的比 JS 好。
 
--   类型安全
+**3. 快速内存分配**
 
-Dart是类型安全的语言，支持静态类型检测，所以可以在编译前发现一些类型的错误，排除潜在问题。
+Flutter 框架使用函数式流，很大程度上依赖于底层的内存分配器。拥有一个能够有效处理琐碎任务的内存分配器十分重要，Dart 正好也满足这个条件。
 
--   Dart团队就在身边
+**4. 类型安全**
 
-据说这两个团队坐的很近。而由于有Dart团队的积极投入，Flutter团队可以获得更多、更方便的支持。
+Dart 是类型安全的语言，支持静态类型检测，所以可以在编译前发现一些类型的错误，排除潜在问题。
 
-Flutter的框架结构
+**5. Dart 团队就在身边**
 
-如图：
+据说这两个团队坐的很近。而由于有 Dart 团队的积极投入，Flutter 团队可以获得更多、更方便的支持。
 
-![](https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YzI0ZjlkNjFiODFmMDhlMWRkY2RiODU4Zjg2YWY2YjdfRUc3OG5nTDBpcEhCMGVyVnpFMExqVUdLZEd4QVBveWZfVG9rZW46Ym94Y25iRUZNclRnWFBTam9GeDl0TFJTeGhjXzE2MzA2MzEzNzI6MTYzMDYzNDk3Ml9WNA)
+## Flutter 框架结构
 
-Flutter Framework
+我们先对 Flutter 的框架做一个整体介绍，这样可以对 Flutter 有个整体印象，形成一张清晰的「知识地图」。
 
-这是一个纯Dart实现的SDK，实现了一套基础库，自底向上，来介绍一下：
+![Flutter 框架图](https://gitee.com/owenlee233/image_store/raw/master/202109030923800.png)
 
--   底下两层（Foundation 和 Animation、Painting、Gestures）是Dart UI层，对应Flutter中的dart:ui包，是Flutter引擎暴露的底层UI库，提供动画、手势及绘制能力
--   Rendering层，这一层是一个抽象的布局层，依赖于dart UI层，Rendering层会构建一个UI树，当UI树有变化时，会计算出有变化的部分，然后更新UI树，最终将UI树绘制到屏幕上，这个过程类似于React中的虚拟DOM。它是Flutter UI框架最核心的部分，它除了确定每个UI元素的位置、大小外还要进行坐标变换、绘制（调用底层 dart:ui）
--   Widgets 层是Flutter提供的一套基础组件库，在基础组件库之上，还提供了Material和Cupertino两种视觉风格的组件库。平常Flutter开发的大多数场景，只是在和这两层打交道。
 
-Flutter Engine
+### Flutter Framework
 
-这是一个纯C++实现的SDK，其中包括了 Skia 引擎，Dart运行时，文字排版引擎等。在代码调用 dart:ui 库时，最终会走到 Engine层，然后实现真正的绘制逻辑。
+这是一个纯 Dart 实现的 SDK，实现了一套基础库，自底向上，分别来介绍一下：
 
-如何学习Flutter
+-   底下两层（Foundation 和 Animation、Painting、Gestures）是  Dart UI层，对应 Flutter 中的 `dart:ui` 包，是 Flutter 引擎暴露的底层 UI 库，提供动画、手势及绘制能力；
+-   Rendering 层，这一层是一个抽象的布局层，依赖于 Dart UI 层，Rendering 层会构建一个 UI 树，当 UI 树有变化时，会计算出有变化的部分，然后更新 UI 树，最终将 UI 树绘制到屏幕上，这个过程类似于 React 中的虚拟 DOM。它是 Flutter UI 框架最核心的部分，它除了确定每个 UI 元素的位置、大小外还要进行坐标变换、绘制（调用底层 dart:ui）；
+-   Widgets 层是 Flutter 提供的一套基础组件库，在基础组件库之上，还提供了 Material 和 Cupertino 两种视觉风格的组件库。平常 Flutter 开发的大多数场景，只是在和这两层打交道。
+
+### Flutter Engine
+
+这是一个纯 C++ 实现的SDK，其中包括了 Skia 引擎，Dart 运行时，文字排版引擎等。在代码调用 dart:ui 库时，最终会走到 Engine 层，然后实现真正的绘制逻辑。
+
+## 如何学习 Flutter
 
 资源
 
