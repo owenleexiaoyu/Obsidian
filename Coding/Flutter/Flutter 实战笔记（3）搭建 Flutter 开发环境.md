@@ -27,30 +27,30 @@ Window 和 Linux 搭建开发环境可直接参考 [官方文档 Install 章节]
 
 #### 获取Flutter SDK
 
-1. 从 [官方 SDK 下载地址]( https://flutter.dev/docs/development/tools/sdk/releases) 下载 SDK，解压缩到目标文件夹，例如我的是（～）。
+1. 从 [官方 SDK 下载地址]( https://flutter.dev/docs/development/tools/sdk/releases) 下载 SDK，解压缩到目标文件夹，例如我的是 `~/Workspace/FlutterSDK`，解压完成后，Flutter SDK 的路径为 `~/Workspace/FlutterSDK/flutter`。
 
 2. 配置环境变量：
 
-打开（或创建 $HOME/.bash_profile）
+打开或创建 `~/.bash_profile` 文件（如果使用 zsh 的话，打开或创建 `~/.zshenv`）。
 
-添加如下路径到path：
+添加如下路径到 PATH：
 
 ```
 // FLUTTER_INSTALL_PATH 是 Flutter SDK 解压后存放的目录
 export PATH=[FLUTTER_INSTALL_PATH]/flutter/bin:$PATH
 ```
 
-运行 `source $HOME/.bash_profile` 刷新当前终端窗口
+运行 `source ~/.bash_profile` （或 `source ~/.zshenv`）命令刷新当前终端窗口。
 
-验证 flutter/bin 是否已经在 PATH 中
+3. 验证 flutter/bin 是否已经在 PATH 中，成功的话，可以在其中看到 flutter/bin 的路径。
 
 ```
 echo $PATH
 ```
 
-运行 flutter doctor
+#### 运行 `flutter doctor`
 
-运行以下命令，查看是否有任何需要安装的依赖项来完成设置(对于详细输出，添加-v 标志) :
+运行以下命令，查看是否有任何需要安装的依赖项来完成设置（对于详细输出，添加 -v 标志）:
 
 ```
 flutter doctor
@@ -58,11 +58,11 @@ flutter doctor
 
 这个命令会输出目前已经安装了哪些工具，还有哪些需要的工具没有安装，可以根据提示进行安装，安装成功后，再次运行 flutter doctor 命令。
 
-IDE配置和使用
+#### IDE 配置和使用
 
-理论上可以使用任何文本编辑器来开发Flutter应用，不过官方推荐使用Android Studio或VS Code来获得更好的开发体验。官方提供了这两个IDE的插件，通过IDE和插件可获得代码补全，语法高亮，widget编辑辅助、运行和调试支持等功能，提升开发效率。
+官方推荐使用 Android Studio 或 VS Code 来开发 Flutter。官方提供了这两个 IDE 的插件，通过 IDE 插件可获得代码补全，语法高亮，Widget 编辑辅助、运行和调试支持等功能，提升开发效率。
 
-Android Studio 配置和使用
+#### Android Studio 配置和使用
 
 （也可以使用IDEA）
 
