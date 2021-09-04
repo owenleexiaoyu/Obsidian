@@ -58,15 +58,15 @@ flutter doctor
 
 这个命令会输出目前已经安装了哪些工具，还有哪些需要的工具没有安装，可以根据提示进行安装，安装成功后，再次运行 flutter doctor 命令。
 
-#### IDE 配置和使用
+### IDE 配置和使用
 
 官方推荐使用 Android Studio 或 VS Code 来开发 Flutter。官方提供了这两个 IDE 的插件，通过 IDE 插件可获得代码补全，语法高亮，Widget 编辑辅助、运行和调试支持等功能，提升开发效率。
 
 #### Android Studio 配置和使用
 
-（也可以使用IDEA）
+也可以使用 IDEA。
 
-安装 Flutter 和 Dart 插件
+首先需要安装 Flutter 和 Dart 插件
 
 -   Flutter 插件：支持 Flutter 开发工作流（运行、调试、热重载等）
 -   Dart 插件：提供代码分析（输入代码时进行验证、代码补全等）
@@ -78,7 +78,7 @@ flutter doctor
 3.  输入项目名称，Flutter SDK 地址，点击 Next
 4.  点击 Finish
 
-上述步骤创建了一个Flutter项目，其中包含一个使用Material组件的演示应用。
+上述步骤创建了一个 Flutter 项目，其中包含一个使用 Material 组件的演示应用。
 
 代码位于：lib/main.dart
 
