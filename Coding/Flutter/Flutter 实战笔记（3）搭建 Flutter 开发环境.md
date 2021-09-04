@@ -11,13 +11,13 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ```
 
-### 在 macOS 上搭建 Flutter 开发环境
+## 在 macOS 上搭建 Flutter 开发环境
 
 Window 和 Linux 搭建开发环境可直接参考 [官方文档 Install 章节](https://flutter.dev/docs/get-started/install)。这篇笔记就不写了。
 
 在 macOS 上可以同时进行 Android 和 iOS 设备的测试。
 
-#### 系统要求
+### 系统要求
 
 操作系统：macOS（64bit）
 
@@ -25,7 +25,7 @@ Window 和 Linux 搭建开发环境可直接参考 [官方文档 Install 章节]
 
 工具：Flutter 使用 git 来安装和升级。
 
-#### 获取Flutter SDK
+### 获取Flutter SDK
 
 1. 从 [官方 SDK 下载地址]( https://flutter.dev/docs/development/tools/sdk/releases) 下载 SDK，解压缩到目标文件夹，例如我的是 `~/Workspace/FlutterSDK`，解压完成后，Flutter SDK 的路径为 `~/Workspace/FlutterSDK/flutter`。
 
@@ -48,7 +48,7 @@ export PATH=[FLUTTER_INSTALL_PATH]/flutter/bin:$PATH
 echo $PATH
 ```
 
-#### 运行 `flutter doctor`
+### 运行 `flutter doctor`
 
 运行以下命令，查看是否有任何需要安装的依赖项来完成设置（对于详细输出，添加 -v 标志）:
 
@@ -58,22 +58,22 @@ flutter doctor
 
 这个命令会输出目前已经安装了哪些工具，还有哪些需要的工具没有安装，可以根据提示进行安装，安装成功后，再次运行 flutter doctor 命令。
 
-### IDE 配置和使用
+## IDE 配置和使用
 
 官方推荐使用 Android Studio 或 VS Code 来开发 Flutter。官方提供了这两个 IDE 的插件，通过 IDE 插件可获得代码补全，语法高亮，Widget 编辑辅助、运行和调试支持等功能，提升开发效率。
 
-#### Android Studio 配置和使用
+### Android Studio 配置和使用
 
 也可以使用 IDEA。
 
-**安装插件**
+#### 安装插件
 
 首先需要安装 Flutter 和 Dart 插件，在 Android Studio 的 Plugins -> Marketplace 中搜索 Flutter 即可，IDE 会提示一并下载安装 Dart 的插件，安装好后，按照提示重启 Android Studio，插件就可以正常使用了。
 
 -   Flutter 插件：支持 Flutter 开发工作流（运行、调试、热重载等）
 -   Dart 插件：提供代码分析（输入代码时进行验证、代码补全等）
 
-**创建 Flutter 应用**
+#### 创建 Flutter 应用
 
 1.  选择 File - New Flutter Project
 2.  选择 Flutter application，点击 Next
@@ -82,7 +82,7 @@ flutter doctor
 
 上述步骤创建了一个 Flutter 项目，其中包含一个使用 Material 组件的演示应用。代码位于：lib/main.dart 文件中。
 
-**运行应用程序**
+#### 运行应用程序
 
 在 Android Studio 的工具栏中找到一个绿色的三角形，这是运行工程的按钮，选择好我们连接的 Android 真机或者通过 AVD 创建的模拟器，点击运行，就可以将 Demo 工程运行在 Android 设备上了，如下图所示：
 
@@ -93,43 +93,30 @@ flutter doctor
 ### 一
 
 > zsh: command not found: flutter
-
 > zsh: command not found: vim
 
-> 之前在电脑上配置过flutter的path，长这样：
+问题原因：把新配置的 PATH 中的 `:$PATH` 删掉了，导致系统默认的 PATH 不可用。
 
-> PATH=/Users/bytedance/Workspace/FlutterSDK/flutter/bin:$PATH:$JAVA_HOME/bin:/Users/bytedance/Library/Android/sdk/platform-tools:/Users/bytedance/Library/Android/sdk/tools:.
+解决方案： [mac 配置bash时导致基本命令失效的解决办法_|刘钊|的博客-CSDN博客](https://blog.csdn.net/weixin_40200876/article/details/87938005)
 
-> 然后这次配的时候，手贱把 flutter/bin:$PATH:$JAVA_HOME 中的**:$PATH** 删掉了，这样很多bash的命令都用不了，vim、open等
+先输入命令让 vim 或者 open 命令能用，再打开 `~/.bash_profile` 文件，将那个 `:$PATH` 加回来。
 
-> 解决方案：
-
-> [mac 配置bash时导致基本命令失效的解决办法_|刘钊|的博客-CSDN博客](https://blog.csdn.net/weixin_40200876/article/details/87938005)
-
-> 先输入命令让vim 或者open命令能用，再打开 ~/.bash_profile 文件，将那个 **:$PATH** 加回来
-
-踩坑记录 2
+### 二
 
 > 编辑完 ~/.bash_profile 文件后，输入 source ~/.bash_profile。输入flutter doctor 还是不起作用。
 
-> 原因：使用的是 zsh 的原因
+原因：使用的 shell 是 zsh 的原因
 
-> 解决方案：在 zsh 中输入 source ~/.bash_profile 然后保存，再在命令行中输入 source ~/.bash_profile 就可以了。
+解决方案：在 `~/.zshenv` 文件中添加 PATH
 
-> 或者可以编辑 .zprofile 文件
-
-https://stackoverflow.com/questions/58400500/zsh-command-not-found-flutter
-
-踩坑记录 3
+### 三
 
 > 输入 flutter doctor 命令，出现这样的报错
-
 > Exception: Flutter failed to create a directory at "/Users/bytedance/.config/flutter". The flutter tool cannot access the file or directory.
-
 > Please ensure that the SDK and/or project is installed in a location that has read/write permissions for the current user.
 
-> 原因：/Users/bytedance/.config/ 这个文件夹，没有读写权限
+原因：/Users/bytedance/.config/ 这个文件夹，没有读写权限
 
-> 解决方案：[flutter upgrade - failed to create a directory at "/Users/.../.config/flutter". - Flutter Daemon has](https://stackoverflow.com/questions/66601502/flutter-upgrade-failed-to-create-a-directory-at-users-config-flutter)
+解决方案：[flutter upgrade - failed to create a directory at "/Users/.../.config/flutter". - Flutter Daemon has](https://stackoverflow.com/questions/66601502/flutter-upgrade-failed-to-create-a-directory-at-users-config-flutter)
 
-> 命令行中输入 sudo chown bytedance /Users/bytedance/.config （bytedance是我电脑上的用户名，不同电脑上不同），需要输入密码，成功后，再次输入 flutter doctor 命令就好了。
+命令行中输入 `sudo chown lixiaoyu /Users/lixiaoyu/.config` （lixiaoyu 是我电脑上的用户名，不同电脑上不同），需要输入密码，成功后，再次输入 flutter doctor 命令就好了。
