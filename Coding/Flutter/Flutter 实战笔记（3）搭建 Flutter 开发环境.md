@@ -66,35 +66,31 @@ flutter doctor
 
 也可以使用 IDEA。
 
-首先需要安装 Flutter 和 Dart 插件
+**安装插件**
+
+首先需要安装 Flutter 和 Dart 插件，在 Android Studio 的 Plugins -> Marketplace 中搜索 Flutter 即可，IDE 会提示一并下载安装 Dart 的插件，安装好后，按照提示重启 Android Studio，插件就可以正常使用了。
 
 -   Flutter 插件：支持 Flutter 开发工作流（运行、调试、热重载等）
 -   Dart 插件：提供代码分析（输入代码时进行验证、代码补全等）
 
-创建 Flutter 应用
+**创建 Flutter 应用**
 
 1.  选择 File - New Flutter Project
 2.  选择 Flutter application，点击 Next
 3.  输入项目名称，Flutter SDK 地址，点击 Next
 4.  点击 Finish
 
-上述步骤创建了一个 Flutter 项目，其中包含一个使用 Material 组件的演示应用。
+上述步骤创建了一个 Flutter 项目，其中包含一个使用 Material 组件的演示应用。代码位于：lib/main.dart 文件中。
 
-代码位于：lib/main.dart
+**运行应用程序**
 
-运行应用程序
+在 Android Studio 的工具栏中找到一个绿色的三角形，这是运行工程的按钮，选择好我们连接的 Android 真机或者通过 AVD 创建的模拟器，点击运行，就可以将 Demo 工程运行在 Android 设备上了，如下图所示：
 
-5.  定位到 Android Studio 工具栏
+![Flutter Demo](https://gitee.com/owenlee233/image_store/raw/master/202109042245817.png)
 
-![](https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2E0ZmUyODhjNmExYmM3YzVlZTUyMmExYzI0MGY3ODlfbXJsdTJONnZLWUN4TERvN3JNNGU3UkNKbFhrd3lSQlRfVG9rZW46Ym94Y256WEdGQ0lNaEFob25wb3UwSU1qYlljXzE2MzA2ODg2OTg6MTYzMDY5MjI5OF9WNA)
+## 踩坑记录
 
-6.  在 target selector中，选择一个运行该应用的android 设备，如果没有，连接一个android真机或者创建一个android模拟器。
-7.  在工具栏中点击 run
-8.  如果一切正常，可以在设备上看到启动的应用程序
-
-![](https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=Yzk5Y2Q1MWFiMTQ3NWRjY2E1NjhhY2FjMjI0MmYyODJfc2tINWxiU3g1OHRLR2ZMNDlicmsweGlLMWZFZ0prTHNfVG9rZW46Ym94Y242QldlS3piS3B2RU5NZzBKeGdnSlVnXzE2MzA2ODg2OTg6MTYzMDY5MjI5OF9WNA)
-
-踩坑记录 1
+### 一
 
 > zsh: command not found: flutter
 
