@@ -44,12 +44,17 @@ main() {
 ```dart
 final str;
 str = "hello";
+// 等价于 final String str = "hello";
 
-const = "world";
-// 
+const str1 = "world";
+// 等价于 const String str1 = "world";
 ```
 
 ## 函数
+
+Dart 是一门真正面向对象的语言，所以即使是函数也是对象，并且有一个类型 `Function`。这意味着函数可以赋值给变量或者作为参数传递给其他函数，这是函数式编程的典型特征。
+
+
 
 ## 异步支持
 
