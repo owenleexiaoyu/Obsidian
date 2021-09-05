@@ -74,8 +74,72 @@ int add(int a, int b) => a + b;
 
 3. 函数作为变量
 
+```dart
+var say = (str) {
+	print(str);
+}
+say("hello");
+```
+
+4. 函数作为参数传递
+
+```dart
+void execute(var callback) {
+	callback();
+}
+
+execute(() => print("callback"));
+```
+
+5. 可选的位置参数
+
+用 `[]` 包装一组函数的参数，这些参数是可选的位置参数，放在参数列表的最后面：
+
+```dart
+String say(String from, String msg, [String device]) {
+  var result = '$from says $msg';
+  if (device != null) {
+    result = '$result with a $device';
+  }
+  return result;
+}
+```
+
+不带可选参数调用 say 函数：
+
+```dart
+say('Bob', 'Howdy'); //结果是： Bob says Howdy
+```
+
+用带可选参数调用 say 函数：
+
+```dart
+say('Bob', 'Howdy', 'smoke signal'); //结果是：Bob says Howdy with a smoke signal
+```
+
+6. 可选的命名参数
+
+用 `{}` 包装一组函数的参数，这些参数是可选的命名参数，放在参数列表的最后面：
+
+```dart
+void enableFlags({bool bold, bool hidden}) {
+    // ... 
+}
+```
+
+调用函数时，可以使用指定命名参数，如：`paramName: value`
+
+```dart
+enableFlags(bold: true, hidden: false);
+```
+
+可选命名参数在 Flutter 中使用非常多。
+
+**注意：不能同时使用可选的位置参数和可选的命名参数。**
 
 ## 异步支持
+
+
 
 ## Stream
 
