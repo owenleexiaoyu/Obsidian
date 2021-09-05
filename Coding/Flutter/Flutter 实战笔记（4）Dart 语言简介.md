@@ -24,6 +24,30 @@ t = 100;
 a = 200;
 ```
 
+dynamic 和 Object 不同的是，dynamic 声明的对象编译器会提供所有可能的组合，而 Object 声明的对象只能使用 Object 的属性和方法，否则编译器会报错。
+
+```dart
+main() {
+	dynamic a = "hi";
+	Object b = "hello";
+	print(a.length); // 不报错
+	print(b.length); // 报错，提示 length 方法没有在 Object 类中声明
+}
+```
+
+使用 dynamic 要格外注意它所赋值的数据的类型，以防出现运行时错误。
+
+### final 和 const
+
+如果不打算更改一个变量，那么使用 `final` 或 `const`，而不是 var。一个 final 变量只能被赋值一次，const 变量在声明时就必须赋值。两者的区别是：const 变量是一个编译时常量，final 变量在第一次使用时被初始化。被 final 或 const 修饰的变量，变量类型可以省略。
+
+```dart
+final str;
+str = "hello";
+
+const = "world";
+// 
+```
 
 ## 函数
 
