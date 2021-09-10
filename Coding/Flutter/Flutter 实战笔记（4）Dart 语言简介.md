@@ -1,4 +1,4 @@
-·这篇笔记只是总结《Flutter 实战》第 1.4 章的内容，所以并不包含所有的 Dart 语言特性，只有一些最常使用的。关于 Dart 语言，后续会有一个专门的系列笔记来记录。
+> 这篇笔记只是总结《Flutter 实战》第 1.4 章的内容，所以并不包含所有的 Dart 语言特性，只有一些最常使用的。关于 Dart 语言，后续会有一个专门的系列笔记来记录。
 
 ## 变量声明
 
@@ -315,11 +315,39 @@ task() async {
 - `async` 表示函数是异步的，会返回一个 Future 对象，可以用 then 方法添加回调。
 - `await` 后面是一个 Future，表示等待该异步任务完成，异步完成后才会往下走；await 必须出现在 async 函数内部。
 
-
-
-> Dart 中的 `async/await` 的作用和 JS 中的 `async/await` 是一模一样的。
-
+> Dart 中的 `async/await` 的作用和 JS 中的 `async/await` 是一模一样的。无论是在 JS 还是在 Dart 中，async/await 都只是一个语法糖，编译器或解释器会将其转化为一个 Promise（Future）的调用链。
 
 ## Stream
 
-## Dart 和 Java 及 JS 的对比
+`Stream` 也是用于接收异步事件数据，和 Future 不同的是，它可以接受多个异步操作的结果（成功或失败）。也就是说，在执行异步任务时，可以多次触发成功或失败事件来传递结果或错误异常。Stream 常用于会多次读取数据的异步人物场景，如网络内容下载、文件读写等。
+
+```dart
+Stream.fromFutures([
+	// 1s后返回结果
+	Future.delayed(new Duration(seconds: 1), () {
+		return "hello 1";
+	}),
+	// 抛出一个异常
+	Future.delayed(new Duration(seconds: 2), () {
+		throw AssertionError("Error");
+	}),
+	// 3s后返回结果
+	Future.delayed(new Duration(seconds: 3), () {
+		return "hello 3";
+	})
+]).listen((data) {
+	print(data);
+}, onError: (e) {
+	print(e.message);
+}, onDone: () {
+	
+}); 
+```
+
+上面的代码会输出：
+
+```dart
+hello 1
+Error
+hello 3
+```
