@@ -277,7 +277,46 @@ login("owen", "123456").then((id) {
 
 可以看到，这种回调套回调的代码可读性是非常差的，出错率也会变高，变得很难维护。所以我们需要想办法消除这种回调地狱。
 
-#### Future
+#### 使用 Future 消除回调地狱
+
+上面提到，Future 所有 API 的返回值仍然是个 Future 对象，可以方便地链式调用，我们可以利用这一点来避免嵌套。
+
+```dart
+login("owen", "123456").then((id) {
+	return getUserInfo(id);
+}).then((userInfo) {
+	return saveUserInfo(userInfo);
+}).then(() {
+	// 执行其他操作
+}).catchError((e) {
+	// 错误处理
+	print(e);
+});
+```
+
+#### 使用 async/await 消除回调地狱
+
+async/await 可以让异步任务的代码看起来和同步代码一样。
+
+```dart
+task() async {
+	try {
+		String userId = await login("owen", "123456");
+		UserInfo userInfo = await getUserInfo(id);
+		await saveUserInfo(userInfo);
+		// 执行接下来操作
+	} catch(e) {
+		// 错误处理
+		print(e);
+	}
+}
+```
+
+- `async` 表示函数是异步的，会返回一个 Future 对象，可以用 then 方法添加回调。
+- `await` 后面是一个 Future，表示等待该异步任务完成，异步完成后才会往下走；await 必须出现在 async 函数内部。
+
+
+
 > Dart 中的 `async/await` 的作用和 JS 中的 `async/await` 是一模一样的。
 
 
