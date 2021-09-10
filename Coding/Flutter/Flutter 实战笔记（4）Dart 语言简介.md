@@ -143,7 +143,7 @@ Dart 中有很多返回 `Future` 或 `Stream` 对象的函数，这些函数被�
 
 ### Future
 
-`Future` 和 JS 中的 Promise  非常相似，表示一个异步操作的最终完成（）
+`Future` 和 JS 中的 Promise  非常相似，表示一个异步操作的最终完成（或失败）的结果。
 
 
 ## Stream
