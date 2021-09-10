@@ -220,8 +220,65 @@ Future.delayed(new Duration(seconds: 2), () {
 
 #### Future.wait
 
-对于需要**等待多个异步任务都执行结束后才做逻辑**的场景。例如，一个界面，需要先请求两个网络接口，将两个请求的结果做处理后再展示在界面上。可以使用 `Future.wait`。它接受一个 
+对于需要**等待多个异步任务都执行结束后才做逻辑**的场景。例如，一个界面，需要先请求两个网络接口，将两个请求的结果做处理后再展示在界面上。可以使用 `Future.wait`。它接受一个 Future 数组，只有数组中所有 Future 都执行成功，才会触发 then 的回调，只要有一个 Future 失败，就会触发错误回调（catchError 或 onError）。
 
+
+```dart
+Future.wait([
+  // 2秒后返回结果  
+  Future.delayed(new Duration(seconds: 2), () {
+    return "hello";
+  }),
+  // 4秒后返回结果  
+  Future.delayed(new Duration(seconds: 4), () {
+    return " world";
+  })
+]).then((results){
+  print(results[0]+results[1]);
+}).catchError((e){
+  print(e);
+});
+```
+
+
+### async 和 await
+
+代码中有大量异步逻辑，并且出现异步任务依赖其他异步任务的结果时，就会出现 Future.then 回调中套回调的情况，这种就被称为 `回调地狱`。例如：有个场景是，用户先登录，登陆成功后获得 userId，然后通过 userId 去请求用户数据，获取到用户数据后将其缓存在文件中。代码如下：
+
+首先定义三个 Future 任务：
+
+```dart
+Future<String> login(String username, String password) {
+	// 用户登录
+	// ...
+}
+
+Future<String> getUserInfo(String userId) {
+	// 获取用户信息
+	// /...
+}
+
+Future saveUserInfo(UserInfo userInfo) {
+	// 缓存用户信息
+}
+```
+
+接下来，用代码来完成上面的需求：
+
+```dart
+login("owen", "123456").then((id) {
+	getUserInfo(id).then((userInfo) {
+		saveUserInfo(userInfo).then(() {
+			// 执行其他操作
+		});
+	});
+});
+```
+
+可以看到，这种回调套回调的代码可读性是非常差的，出错率也会变高，变得很难维护。所以我们需要想办法消除这种回调地狱。
+
+#### Future
+> Dart 中的 `async/await` 的作用和 JS 中的 `async/await` 是一模一样的。
 
 
 ## Stream
