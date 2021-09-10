@@ -149,8 +149,32 @@ Dart 中有很多返回 `Future` 或 `Stream` 对象的函数，这些函数被�
 
 #### Future.then
 
-Future.then 中接受执行成功的
+异步任务成功，会执行 `Future.then` 中的代码，可以接受到异步的结果。
 
+```dart
+Future.delayed(new Duration(seconds: 2), () {
+	return "hello dart";
+}).then((data) {
+	print(data);
+});
+```
+
+#### Future.catchError
+
+异步任务发生错误，可以在 `catchError` 中捕获错误。
+
+```dart
+Future.delayed(new Duration(seconds: 2), () {
+	// return "hello dart";
+	throw Asser
+}).then((data) {
+	// 执行成功会走到这里
+	print(data);
+}).catchError((e) {
+	// 执行失败会走到这里
+	print(e);
+});
+```
 
 ## Stream
 
