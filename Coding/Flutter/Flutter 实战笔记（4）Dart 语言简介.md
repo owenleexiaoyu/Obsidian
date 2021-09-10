@@ -166,7 +166,7 @@ Future.delayed(new Duration(seconds: 2), () {
 ```dart
 Future.delayed(new Duration(seconds: 2), () {
 	// return "hello dart";
-	throw Asser
+	throw AssertionError("Error");
 }).then((data) {
 	// 执行成功会走到这里
 	print(data);
@@ -175,6 +175,54 @@ Future.delayed(new Duration(seconds: 2), () {
 	print(e);
 });
 ```
+
+
+除了使用 catchError 来捕获异常外，`then` 方法还有一个可选参数 `onError`，也可以用来捕获异常。
+
+```dart
+Future.delayed(new Duration(seconds: 2), () {
+	// return "hello dart";
+	throw AssertionError("Error");
+}).then((data) {
+	// 执行成功会走到这里
+	print(data);
+}, onError((e) {
+	// 执行失败会走到这里
+	print(e);
+});
+```
+
+
+#### Future.whenComplete
+
+无论成功还是失败，都会调用到 `whenComplete`，可以在这里做一些异步任务结束（不管成功还是失败）时要做的事情。
+
+```dart
+Future.delayed(new Duration(seconds: 2), () {
+	// return "hello dart";
+	throw AssertionError("Error");
+}).then((data) {
+	// 执行成功会走到这里
+	print(data);
+}).catchError((e) {
+	// 执行失败会走到这里
+	print(e);
+}).whenComplete(() {
+	// 无论成功还是失败都会走到这里
+	print("future complete");
+});
+
+// 这段代码输出结果
+// Error
+// future complete
+```
+
+
+#### Future.wait
+
+对于需要**等待多个异步任务都执行结束后才做逻辑**的场景。例如，一个界面，需要先请求两个网络接口，将两个请求的结果做处理后再展示在界面上。可以使用 `Future.wait`。它接受一个 
+
+
 
 ## Stream
 
