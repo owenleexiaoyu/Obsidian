@@ -185,7 +185,7 @@ Widget build(BuildContext context) {
       ),
     ),
     floatingActionButton: new FloatingActionButton(
-      onPressed: _incrementCounter,
+      onPressed: _incrementCounter, // 浮动按钮点击后，会执行_incrementCounter 函数
       tooltip: 'Increment',
       child: new Icon(Icons.add),
     ),
@@ -193,5 +193,18 @@ Widget build(BuildContext context) {
 }
 ```
 
-- `Scaffold` 是 Material 库提供的页面脚手架，它提供了默认的导航栏
+- `Scaffold` 是 Material 库提供的页面脚手架，它提供了默认的导航栏（appBar）、主屏幕（body）、浮动按钮（floatingActionButton）。
+-  `Center` 组件可以将其子组件对齐到屏幕中心。
+-  `Column` 组件将所有子组件纵向排列。
+-  `Text` 组件用来显示文本。
+-  `FloatingActionButton` 组件用来展示浮动按钮，接受一个 `onPressed` 点击事件的参数。
+
 #### 将 build 放在 State 中的原因
+
+为什么 `build()` 方法要放在 State（而不是 `StatefulWidget`）中 ？这主要是为了提高开发的灵活性。如果 build 方法放在 StatefulWidget 中会存在两个问题。
+
+- 在 StatefulWidget 中访问状态不方便
+
+状态是保存在 State 中的，在构建 StatefulWidget 的 UI 时，肯定需要访问状态，build 方法就需要一个 State 的变量，同时 State 中的状态也需要声明成 public 的，这样可能会有其他地方修改了状态，变得不可控。
+
+- 继承 StatefulWidget 不方便
