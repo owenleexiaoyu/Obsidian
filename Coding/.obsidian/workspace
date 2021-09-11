@@ -1,0 +1,99 @@
+{
+  "main": {
+    "id": "bd9c57152bfc6c72",
+    "type": "split",
+    "children": [
+      {
+        "id": "9da4cd7badde75b8",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Flutter/Flutter 实战笔记（5）解析默认计数器应用.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "95c2f3795be39787",
+    "type": "split",
+    "children": [
+      {
+        "id": "36ca6d62a99a9376",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "33d0dced529043e0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "132ba1ab530e12f2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1c28399431499cf3",
+    "type": "split",
+    "children": [
+      {
+        "id": "81af38ee4160204b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f70fdb1f9fcde424",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Flutter/Flutter 实战笔记（5）解析默认计数器应用.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "9da4cd7badde75b8",
+  "lastOpenFiles": [
+    "Flutter/Flutter 实战笔记（5）解析默认计数器应用.md",
+    "Flutter/Flutter 实战笔记（3）搭建 Flutter 开发环境.md",
+    "Flutter/Flutter 实战笔记（4）Dart 语言简介.md",
+    "Untitled.md",
+    "Flutter/Flutter  实战笔记（1）跨平台技术.md",
+    "Flutter/Flutter 实战笔记（2）初识 Flutter.md",
+    "扫雷游戏中的算法.md"
+  ]
+}
