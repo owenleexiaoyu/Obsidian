@@ -114,12 +114,77 @@ State 生命周期包含如下回调：
 
 ## 在 Widget 树中获取 State
 
-因为 StatefulWidget 的具体逻辑都在  State 中，所以很多时候需要获取 StatefulWidget 对应的 State 对象来调用一些方法，比如 `Scoffold` 组件的 `ScoffoldState` 中定义了打开 SnackBar 的方法。
+因为 StatefulWidget 的具体逻辑都在  State 中，所以很多时候需要获取 StatefulWidget 对应的 State 对象来调用一些方法，比如 `Scaffold` 组件的 `ScaffoldState` 中定义了打开 SnackBar 的方法。
 
 ### 通过 BuildContext
 
 `context` 对象有个 `findAncestorStateOfType` 方法，可以从当前节点沿着 Widget 树往上查找指定类型的 StatefulWidget 对应的 State 对象。
 
+```dart
+Scaffold(
+  appBar: AppBar(
+    title: Text("子树中获取State对象"),
+  ),
+  body: Center(
+    child: Builder(builder: (context) {
+      return RaisedButton(
+        onPressed: () {
+          // 查找父级最近的Scaffold对应的ScaffoldState对象
+          ScaffoldState _state = context.findAncestorStateOfType<ScaffoldState>();
+          //调用ScaffoldState的showSnackBar来弹出SnackBar
+          _state.showSnackBar(
+            SnackBar(
+              content: Text("我是SnackBar"),
+            ),
+          );
+        },
+        child: Text("显示SnackBar"),
+      );
+    }),
+  ),
+);
+```
 
+
+一般来说，如果 StatefulWidget 的状态是私有的，那么我们不该去直接获取它的 State 对象；如果 StatefulWidget 的状态是希望暴露出来的（通常包含一些组件的操作方法），我们可以去直接获取它的 State 对象。但是通过`context.findAncestorStateOfType`获取 StatefulWidget 的状态的方法是通用的，并不能在语法层面指定 StatefulWidget 的状态是否私有，所以 Flutter 中有个默认的约定，如果 StatefulWidget 希望暴露 State，应当提供一个 `of` 静态方法来拿到 State 对象，其他组件通过这个方法来获取，如果不希望暴露，则不提供 `of` 方法。Scaffold 也提供了这样一个方法：
+
+```dart
+// 直接通过of静态方法来获取ScaffoldState 
+ScaffoldState _state=Scaffold.of(context); 
+_state.showSnackBar(
+  SnackBar(
+    content: Text("我是SnackBar"),
+  ),
+);
+```
 
 ### 通过 GlobalKey
+
+通过 `GlobalKey` 也可以获取 State 对象，分为两步：
+
+1. 给目标 StatefulWidget 添加 GlobalKey
+
+```dart
+//定义一个globalKey, 由于GlobalKey要保持全局唯一性，我们使用静态变量存储
+static GlobalKey<ScaffoldState> _globalKey= GlobalKey();
+...
+Scaffold(
+    key: _globalKey , //设置key
+    ...  
+)
+```
+
+2. 使用 GlobalKey 来获取 State 对象
+
+```dart
+_globalKey.currentState.openDrawer()
+```
+
+GlobalKey 是 Flutter 提供的一种在整个 App 中引用 Element 的机制。如果一个 Widget 设置了 GlobalKey，那么我们便可以通过 `globalKey.currentWidget` 获得该 Widget 对象、`globalKey.currentElement` 来获得对应的 Element 对象，如果是 StatefulWidget，则可以通过 `globalKey.currentState` 来获得对应的 State 对象。
+
+> 注意：使用 GlobalKey 开销较大，如果有其他可选方案，应尽量避免使用它。另外同一个 GlobalKey 在整个 Widget 树中必须是唯一的，不能重复。
+
+
+## 内置组件库
+
+Flutter 提供了一套丰富的、开箱即用的基础组件（`flutter/widgets.dart`），在此基础上，又提供了 Material 风格（Android 默认的视觉风格，`flutter/material.dart`）和 Cupertino 风格（iOS 默认视觉风格，`flutter/cupertino.dart`）的组件库。
