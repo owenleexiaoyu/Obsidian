@@ -39,5 +39,28 @@ abstract class Widget extends DiagnosticableTree {
 
 - Widget 继承自 DiagnosticableTree，DiagnosticableTree（诊断树）的作用是提供调试信息。
 - `Key key`：key 的主要作用是决定下一次 build 的时候是否复用旧的 Widget，判断条件在 `canUpdate`。
+- `createElement`：Flutter 在构建 UI 树时，会调用这个方法生成对应节点的 Element 对象。
 - `debugFillProperties` ：复写父类的方法，主要是设置诊断树的一些特性。
-- `canUpdate`：用于判断是否用新
+- `canUpdate`：用于在 Widget 树重新 build 时判断能否复用旧的 Widget。是否用新的 Widget 对象去更新旧 UI 树上所对应 Element 对象的配置，从代码中看到，当 newWidget 和 oldWidget 的 runtimeType、key 相同时，就会用 newWidget 去更新 Element 对象的配置，否则会创建新的 Element。
+
+
+## StatelessWidget
+
+`StatelessWidget` 继承自 Widget，重写了 createElement 方法。
+
+```dart
+@override
+StatelessElement createElement() => new StatelessElement(this);
+```
+
+`StatelessElement` 间接继承自 Element，与 StatelessWidget 对应。
+
+通常在 build 方法中嵌套其他 Widget 来构建 UI。
+
+### BuildContext
+
+build 方法中有个 context 参数，类型是 `BuildContext`，表示当前 Widget 在 Widget 树中的上下文，每个 Widget 都会对应一个 BuildContext 对象。BuildContext 是对 Widget 树操作的一个句柄。例如可以从当前 Widget 向上遍历 Widget 树，或者按照 Widget 类型查找父级 Widget。
+
+## StatefulWidget
+
+`StatefulWidget` 同样继承自 Widget，并重写了 createElement 方法。返回的是 `StatefulElement`。另外
