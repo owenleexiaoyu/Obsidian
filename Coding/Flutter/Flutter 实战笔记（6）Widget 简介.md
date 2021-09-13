@@ -63,4 +63,30 @@ build 方法中有个 context 参数，类型是 `BuildContext`，表示当前 W
 
 ## StatefulWidget
 
-`StatefulWidget` 同样继承自 Widget，并重写了 createElement 方法。返回的是 `StatefulElement`。另外
+`StatefulWidget` 同样继承自 Widget，并重写了 createElement 方法。返回的是 `StatefulElement`。另外 StatefulWidget 还添加了一个新的接口 `createState`，在创建 StatefulWidget 时，需要重写这个方法。这个方法用于创建和 StatefulWidget 有关的状态，在 StatefulWidget 生命周期中可能会被多次调用，例如，当一个 StatefulWidget 同时插入到Widget 树的多个位置时，Flutter 就会调用该方法为每个位置生成一个单独的 State 示例，是一个 StatefulElement 对应一个 State。
+
+```dart
+abstract class StatefulWidget extends Widget {
+  const StatefulWidget({ Key key }) : super(key: key);
+    
+  @override
+  StatefulElement createElement() => new StatefulElement(this);
+    
+  @protected
+  State createState();
+}
+```
+
+### State
+
+`State` 表示 StatefulWidget 中需要维护的状态，State 中保存的信息可以：
+1. 在 Widget 构建时被同步读取
+2. 在 Widget 生命周期中被修改，修改后调用 `setState` 方法，通知 Flutter Framework 状态发生改变，Flutter Framework 会重新调用 build 方法构建 Widget 树，更新 UI。
+
+State 中有两个常用属性：
+1. `widget`：表示与这个 State 关联的 Widget 实例。
+2. `context`：BuildContext 实例
+
+#### State 生命周期
+
+
