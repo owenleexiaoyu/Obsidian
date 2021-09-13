@@ -89,4 +89,9 @@ State 中有两个常用属性：
 
 #### State 生命周期
 
+下面这张图是 State 的声明周期图：
 
+![State lifecycle](https://gitee.com/owenlee233/image_store/raw/master/202109132353287.png)
+
+State 生命周期包含如下回调：
+- 
