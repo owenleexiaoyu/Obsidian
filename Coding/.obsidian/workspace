@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter/Flutter 实战笔记（7）状态管理.md",
+            "file": "Flutter/Flutter 实战笔记（8）文本及样式.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/Flutter 实战笔记（7）状态管理.md",
+                "file": "Flutter/Flutter 实战笔记（8）文本及样式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
