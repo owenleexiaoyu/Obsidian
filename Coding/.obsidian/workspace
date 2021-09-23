@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "数据结构与算法/20210908-扫雷游戏中的算法.md",
-            "mode": "source"
+            "file": "Flutter/20210923-Flutter Video Player App.md",
+            "mode": "preview"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据结构与算法/20210908-扫雷游戏中的算法.md",
+                "file": "Flutter/20210923-Flutter Video Player App.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "Untitled.md",
     "数据结构与算法/20210908-扫雷游戏中的算法.md",
     "Flutter/20210909-Flutter 实战笔记总纲.md",
     "Flutter/20210914-解析默认计数器应用.md",
@@ -96,7 +97,6 @@
     "Flutter/20210917-文本及样式.md",
     "Flutter/20210918-FlutterWidgets-Text.md",
     "数据结构与算法/扫雷游戏中的算法.md",
-    "Flutter/Flutter Widgets - Text.md",
-    "Flutter/Flutter 实战笔记（8）文本及样式.md"
+    "Flutter/Flutter Widgets - Text.md"
   ]
 }
