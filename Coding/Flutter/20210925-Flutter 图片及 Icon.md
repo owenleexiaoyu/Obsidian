@@ -60,11 +60,43 @@ Image 主要有如下参数：
 
 - `【double?】width`、`【double?】height`：用于设置图片的宽高，当不指定宽高时，图片会根据当前父容器的限制，尽可能展示其原始大小，如果只指定宽高其中一个，另一个属性默认会按比例缩放，但可以通过 `fit` 属性进行修改。
 - `【BoxFit?】fit`：用于在图片的显示控件和图片本身大小不同时，指定图片的适应模式，有如下值：
-  - BoxFit.fill
-  - BoxFit.cover
-  - BoxFit.contain
-  - BoxFit.fitWidth
-  - BoxFit.fitHeight
-  - BoxFit.none
-  - BoxFit.scaleDown
+  - BoxFit.fill：会拉伸充满显示空间，图片本身长宽比会发生变化，图片会变形。
+  - BoxFit.cover：会按图片长宽比放大后居中填满显示空间，图片不会变形，超出部分被裁剪。
+  - BoxFit.contain：默认 fit 规则，在保证图片本身长宽比不变的情况下，缩放以适应当前显示空间，图片不会变形。
+  - BoxFit.fitWidth：图片宽度缩放到显示空间的宽度，高度按比例缩放，然后居中展示，图片不会变形，超出部分被裁剪。
+  - BoxFit.fitHeight：图片高度缩放到显示空间的高度，宽度按比例缩放，然后居中展示，图片不会变形，超出部分被裁剪。
+  - BoxFit.none：没有适应规则，在显示空间内展示图片，如果图片比显示空间大，则只会显示图片的中间部分，超出部分被裁剪。
+  - BoxFit.scaleDown：当图片需要缩放时，和 contain 效果一致，不需要缩放时，和 none 效果一致。
 
+```dart
+Column(
+  children: BoxFit.values.map((e) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Container(
+            width: 150,
+            height: 100,
+            child: Image(
+              image: img,
+              fit: e,
+            ),
+            decoration: BoxDecoration(color: Colors.yellow),
+          ),
+          SizedBox(width: 10,),
+          Text(e.toString())
+        ],
+      ),
+    );
+  }).toList(),
+),
+```
+
+![BoxFit](https://gitee.com/owenlee233/image_store/raw/master/202109251348330.png)
+
+> BoxFit.scaleDown 的不同效果展示：
+>
+> ![BoxFit.scaleDown](https://gitee.com/owenlee233/image_store/raw/master/202109251358697.png)
+
+- `color` 、`colorBlendMode`：绘制图片时，对每个像素进行颜色混合，color 指定要混合的颜色，colorBlendMode 指定混合模式。
