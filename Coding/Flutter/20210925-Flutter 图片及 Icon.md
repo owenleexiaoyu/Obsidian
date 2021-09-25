@@ -54,7 +54,7 @@ Image.network(
 )
 ```
 
-### Image 组件参数解析
+#### Image 组件参数解析
 
 Image 主要有如下参数：
 
@@ -99,4 +99,14 @@ Column(
 >
 > ![BoxFit.scaleDown](https://gitee.com/owenlee233/image_store/raw/master/202109251358697.png)
 
-- `color` 、`colorBlendMode`：绘制图片时，对每个像素进行颜色混合，color 指定要混合的颜色，colorBlendMode 指定混合模式。
+- `【Color?】color` 、`【BlendMode?】colorBlendMode`：绘制图片时，对每个像素进行颜色混合，color 指定要混合的颜色，colorBlendMode 指定混合模式。
+- `【ImageRepeat?】repeat`：当图片（可能是缩放后）没有填充满小于显示空间时，指定图片的重复规则，有如下几种值：
+  - ImageRepeat.noRepeat：不重复
+  - ImageRepeat.repeat：X 轴、Y 轴方向都重复
+  - ImageRepeat.repeatX：仅在 X 轴方向重复
+  - ImageRepeat.repeatY：仅在 Y 轴方向重复
+
+### Icon
+
+Flutter 中，可以使用 iconfont，即“字体图标”，它是将图标做成字体文件，然后通过指定不同的字符来展示不同的图片。
+
