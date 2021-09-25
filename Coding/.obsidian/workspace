@@ -7,11 +7,8 @@
         "id": "9da4cd7badde75b8",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Flutter/20210925-Flutter 图片及 Icon.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/20210925-Flutter 图片及 Icon.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
