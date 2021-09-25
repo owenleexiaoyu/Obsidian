@@ -40,7 +40,6 @@ Text(
 
 ```dart
 Row(
-  mainAxisAlignment: MainAxisAlignment.center,
   children: <Widget>[
     Icon(Icons.accessible,color: Colors.green),
     Icon(Icons.error,color: Colors.green),
@@ -85,13 +84,13 @@ class MyIcons{
   // book 图标
   static const IconData book = const IconData(
       0xe614, 
-      fontFamily: 'myIcon', 
+      fontFamily: 'MyIcon', 
       matchTextDirection: true
   );
   // 微信图标
   static const IconData wechat = const IconData(
       0xec7d,  
-      fontFamily: 'myIcon', 
+      fontFamily: 'MyIcon', 
       matchTextDirection: true
   );
 }
@@ -101,7 +100,6 @@ class MyIcons{
 
 ```dart
 Row(
-  mainAxisAlignment: MainAxisAlignment.center,
   children: <Widget>[
     Icon(MyIcons.book,color: Colors.purple),
     Icon(MyIcons.wechat,color: Colors.green),
