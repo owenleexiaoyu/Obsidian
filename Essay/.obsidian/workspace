@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Watch And Read（2021-09）.md",
+            "file": "Watch And Read（2021-10）.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Watch And Read（2021-09）.md",
+                "file": "Watch And Read（2021-10）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "e04f8233ff5bc5fe",
   "lastOpenFiles": [
+    "Watch And Read（2021-10）.md",
     "Watch And Read（2021-09）.md",
     "Untitled.md",
     "Obsidian 初体验.md",
@@ -96,7 +97,6 @@
     "Watch And Read（2021-06）.md",
     "Watch And Read（2021-05）.md",
     "Watch And Read（2021-03）.md",
-    "Watch And Read（2021-02）.md",
-    "Watch And Read（2021-01）.md"
+    "Watch And Read（2021-02）.md"
   ]
 }
