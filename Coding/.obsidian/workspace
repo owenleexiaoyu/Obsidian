@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter/20211012-Flutter 布局原理与约束.md",
-            "mode": "preview"
+            "file": "Flutter/20211019-Flutter 弹性布局.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/20211012-Flutter 布局原理与约束.md",
+                "file": "Flutter/20211019-Flutter 弹性布局.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,9 +88,9 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "Untitled.md",
     "Flutter/20211012-Flutter 布局原理与约束.md",
     "Flutter/20211012-Flutter 布局类组件简介.md",
-    "Untitled.md",
     "Flutter/20211014-Flutter Todo App.md",
     "Flutter/20210915-Widget 简介.md",
     "Flutter/20210923-Flutter Video Player App.md",
