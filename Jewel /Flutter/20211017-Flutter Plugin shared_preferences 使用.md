@@ -112,10 +112,6 @@ class _SpPluginLibPageState extends State<SpPluginLibPage> {
 先来看 `SharedPreferences.getInstance()` 方法：
 
 ```dart
-/// Loads and parses the [SharedPreferences] for this app from disk.
-///
-/// Because this is reading from disk, it shouldn't be awaited in
-/// performance-sensitive blocks.
 static Future<SharedPreferences> getInstance() async {
   if (_completer == null) {
     final completer = Completer<SharedPreferences>();
@@ -124,8 +120,6 @@ static Future<SharedPreferences> getInstance() async {
           await _getSharedPreferencesMap();
       completer.complete(SharedPreferences._(preferencesMap));
     } on Exception catch (e) {
-      // If there's an error, explicitly return the future with an error.
-      // then set the completer to null so we can retry.
       completer.completeError(e);
       final Future<SharedPreferences> sharedPrefsFuture = completer.future;
       _completer = null;
@@ -181,7 +175,7 @@ static SharedPreferencesStorePlatform get _store {
 }
 ```
 
-可以看出 _store 是个平台化的 Sp 实例，在不同的平台下，会创建不同类型的实例，如 linux 下，是 `SharedPreferencesLinux`,  windows 下，是 `SharedPreferencesWindows`，Android 和 iOS 下 是 `MethodChannelSharedPreferencesStore`，Web 里是 `SharedPreferencesPlugin`，，它们都是 `SharedPreferencesStorePlatform` 的子类。
+可以看出 _store 是个平台化的 Sp 实例，在不同的平台下，会创建不同类型的实例，如 linux 下，是 `SharedPreferencesLinux`,  windows 下，是 `SharedPreferencesWindows`，Android 和 iOS 下 是 `MethodChannelSharedPreferencesStore`，Web 里是 `SharedPreferencesPlugin`，它们都是 `SharedPreferencesStorePlatform` 的子类。
 
 我们来看看各个平台下 `getAll` 方法的实现，以此来理解各个平台下实现持久化的机制：
 
@@ -293,12 +287,11 @@ public class SharedPreferencesPlugin implements FlutterPlugin {
   public void onAttachedToEngine(FlutterPlugin.FlutterPluginBinding binding) {
     setupChannel(binding.getBinaryMessenger(), binding.getApplicationContext());
   }
-
+  
   @Override
   public void onDetachedFromEngine(FlutterPlugin.FlutterPluginBinding binding) {
     teardownChannel();
   }
-
   
   // 1
   private void setupChannel(BinaryMessenger messenger, Context context) {
@@ -329,7 +322,83 @@ MethodCallHandlerImpl(Context context) {
 }
 ```
 
-在构造函数中的注释 1 的位置，创建了 Android 中的 SharedPreferences 对象。SP 的 Repo 名称是 `FlutterSharedPreferences`，所以 shared_preferences 插件是不支持自己创建 Repo 的，开发时需要注意 key 的唯一性，否则可能出现覆盖了其他人 key 的内容的问题。
+在构造函数中的注释 1 的位置，创建了 Android 中的 SharedPreferences 对象。SP 的 Repo 名称是 `FlutterSharedPreferences`，所以 shared_preferences 插件是不支持自己创建其他名字的 Repo 的，开发时需要注意 key 的唯一性，否则可能出现覆盖了其他人 key 的内容的问题。
 
+```java
+@Override
+public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+  String key = call.argument("key");
+  try {
+    switch (call.method) {
+      case "setBool":
+        commitAsync(preferences.edit().putBoolean(key, (boolean) call.argument("value")), result);
+        break;
+      case "setDouble":
+        double doubleValue = ((Number) call.argument("value")).doubleValue();
+        String doubleValueStr = Double.toString(doubleValue);
+        commitAsync(preferences.edit().putString(key, DOUBLE_PREFIX + doubleValueStr), result);
+        break;
+      case "setInt":
+        Number number = call.argument("value");
+        if (number instanceof BigInteger) {
+          BigInteger integerValue = (BigInteger) number;
+          commitAsync(
+              preferences
+                  .edit()
+                  .putString(
+                      key, BIG_INTEGER_PREFIX + integerValue.toString(Character.MAX_RADIX)),
+              result);
+        } else {
+          commitAsync(preferences.edit().putLong(key, number.longValue()), result);
+        }
+        break;
+      case "setString":
+        String value = (String) call.argument("value");
+        if (value.startsWith(LIST_IDENTIFIER)
+            || value.startsWith(BIG_INTEGER_PREFIX)
+            || value.startsWith(DOUBLE_PREFIX)) {
+          result.error(
+              "StorageError",
+              "This string cannot be stored as it clashes with special identifier prefixes.",
+              null);
+          return;
+        }
+        commitAsync(preferences.edit().putString(key, value), result);
+        break;
+      case "setStringList":
+        List<String> list = call.argument("value");
+        commitAsync(
+            preferences.edit().putString(key, LIST_IDENTIFIER + encodeList(list)), result);
+        break;
+      case "commit":
+        // We've been committing the whole time.
+        result.success(true);
+        break;
+      case "getAll":
+        result.success(getAllPrefs());
+        return;
+      case "remove":
+        commitAsync(preferences.edit().remove(key), result);
+        break;
+      case "clear":
+        Set<String> keySet = getAllPrefs().keySet();
+        SharedPreferences.Editor clearEditor = preferences.edit();
+        for (String keyToDelete : keySet) {
+          clearEditor.remove(keyToDelete);
+        }
+        commitAsync(clearEditor, result);
+        break;
+      default:
+        result.notImplemented();
+        break;
+    }
+  } catch (IOException e) {
+    result.error("IOException encountered", call.method, e);
+  }
+}
+```
 
+这个类中最核心的就是 `onMethodCall` 方法了，通过 `call.method` 获取到具体的方法名，在对应的 case 分支中处理对应的逻辑。通过 `call.argument("key")` 获取到 key，通过 `call.argument("value")` 获取 value。iOS 下的逻辑也是类似的。
+
+基本的逻辑就是这样了，其实还是比较清晰简单的，还有些细节的逻辑这里就不赘述了，可以看源码进行了解。
 
