@@ -214,7 +214,7 @@ Future<Map<String, Object>> _readPreferences() async {
     return _cachedPreferences!;
   }
   Map<String, Object> preferences = {};
- 	// 是打开系统文件的
+ 	// 去读取文件 shared_preferences.json
   final File? localDataFile = await _getLocalDataFile();
   if (localDataFile != null && localDataFile.existsSync()) {
     String stringMap = localDataFile.readAsStringSync();
@@ -226,4 +226,110 @@ Future<Map<String, Object>> _readPreferences() async {
   return preferences;
 }
 ```
+
+Window 下 SharedPreferences 的数据是保存在软件数据目录下一个名为 `shared_preferences.json` 的文件中，这个方法就是去读取这个文件的内容，并解析成 Map 的格式。
+
+**Linux: SharedPreferencesLinux**
+
+```
+@override
+Future<Map<String, Object>> getAll() async {
+  return _readPreferences();
+}
+
+Future<Map<String, Object>> _readPreferences() async {
+  if (_cachedPreferences != null) {
+    return _cachedPreferences!;
+  }
+
+  Map<String, Object> preferences = {};
+  final File? localDataFile = await _getLocalDataFile();
+  if (localDataFile != null && localDataFile.existsSync()) {
+    String stringMap = localDataFile.readAsStringSync();
+    if (stringMap.isNotEmpty) {
+      preferences = json.decode(stringMap).cast<String, Object>();
+    }
+  }
+  _cachedPreferences = preferences;
+  return preferences;
+}
+```
+
+可以看到 Linux 下代码和 Windows 基本是一致的，其实内容保存的文件名也是相同的，区别只是两个系统的文件路径有差异。
+
+**Web: SharedPreferencesPlugin**
+
+> 不知道为啥 Web 版本的类型名称是 SharedPreferencesPlugin 而不是 SharedPreferencesWeb，强迫症表示受不了了。
+
+```dart
+@override
+Future<Map<String, Object>> getAll() async {
+  final Map<String, Object> allData = {};
+  for (String key in _storedFlutterKeys) {
+    allData[key] = _decodeValue(html.window.localStorage[key]!);
+  }
+  return allData;
+}
+```
+
+Web 版本下，SharedPreferences 的 Key-Value 是存在 `html.window.localStorage` 中的。
+
+最后来看下 Android 平台下通过 MethodChannel 是如何调用平台 API 的。
+
+```java
+/** SharedPreferencesPlugin */
+public class SharedPreferencesPlugin implements FlutterPlugin {
+  private static final String CHANNEL_NAME = "plugins.flutter.io/shared_preferences";
+  private MethodChannel channel;
+  private MethodCallHandlerImpl handler;
+
+  @SuppressWarnings("deprecation")
+  public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
+    final SharedPreferencesPlugin plugin = new SharedPreferencesPlugin();
+    plugin.setupChannel(registrar.messenger(), registrar.context());
+  }
+
+  @Override
+  public void onAttachedToEngine(FlutterPlugin.FlutterPluginBinding binding) {
+    setupChannel(binding.getBinaryMessenger(), binding.getApplicationContext());
+  }
+
+  @Override
+  public void onDetachedFromEngine(FlutterPlugin.FlutterPluginBinding binding) {
+    teardownChannel();
+  }
+
+  
+  // 1
+  private void setupChannel(BinaryMessenger messenger, Context context) {
+    channel = new MethodChannel(messenger, CHANNEL_NAME);
+    handler = new MethodCallHandlerImpl(context);
+    channel.setMethodCallHandler(handler);
+  }
+
+  private void teardownChannel() {
+    handler.teardown();
+    handler = null;
+    channel.setMethodCallHandler(null);
+    channel = null;
+  }
+}
+```
+
+可以看到 `SharedPreferencesPlugin` 的核心是在注释 1 的 `setupChannel` 方法中，创建了一个 MethodChannel，名称是 `plugins.flutter.io/shared_preferences`，这个 channel 的处理器是 `MethodCallHandlerImpl`，我们来看看这个类里的代码：
+
+```java
+// 构造函数
+MethodCallHandlerImpl(Context context) {
+  // 1
+  preferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+  executor =
+      new ThreadPoolExecutor(0, 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+  handler = new Handler(Looper.getMainLooper());
+}
+```
+
+在构造函数中的注释 1 的位置，创建了 Android 中的 SharedPreferences 对象。SP 的 Repo 名称是 `FlutterSharedPreferences`，所以 shared_preferences 插件是不支持自己创建 Repo 的，开发时需要注意 key 的唯一性，否则可能出现覆盖了其他人 key 的内容的问题。
+
+
 
