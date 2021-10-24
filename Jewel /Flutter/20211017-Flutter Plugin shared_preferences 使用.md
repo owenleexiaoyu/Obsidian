@@ -21,13 +21,27 @@ SharedPreferences prefs = await SharedPreferences.getInstance();
 
 ```dart
 /// 读方法
-
 // 返回所有的key
 Set<String> getKeys();
 // 返回一个key的值，不确定类型
 Object? get(String key);
-// 返回一个bool类型的值，不是bool类型会抛出异常
 bool? getBool(String key);
+int? getInt(String key);
+double? getDouble(String key);
+String? getString(String key);
+List<String>? getStringList(String key);
 
+/// 写方法
+Future<bool> setBool(String key, bool value);
+Future<bool> setInt(String key, int value);
+Future<bool> setDouble(String key, double value);
+Future<bool> setString(String key, String value);
+Future<bool> setStringList(String key, List<String> value);
+Future<bool> remove(String key);
+Future<bool> clear();
 ```
+
+### 示例
+
+我们写一个 Flutter 官方模版的计数器示例，和模板不同的是，计数值 count 会被保存到设备的磁盘中，下次打开这个计数器，依然会显示之前的 count。
 
