@@ -155,4 +155,75 @@ static Future<Map<String, Object>> _getSharedPreferencesMap() async {
 }
 ```
 
-注释 1 的位置调用了 `_store.getAll()` 从设备中获取到所有的 key-value，
+注释 1 的位置调用了 `_store.getAll()` 从设备中获取到所有的 key-value，然后遍历这个 Map，所有前缀是 `flutter.` 的 key，去掉前缀，作为 preferencesMap 的 key，最终赋值给 _preferenceCache，有不是 flutter. 前缀的 key，则会抛出异常。（插件会在我们自己写的 key 前面自动添加一个 flutter. 的前缀作为最终写入设备的 key）。
+
+来看看 `_store` 是什么东西：
+
+```dart
+static SharedPreferencesStorePlatform get _store {
+  
+  if (_manualDartRegistrationNeeded) {
+    // Only do the initial registration if it hasn't already been overridden
+    // with a non-default instance.
+    if (!kIsWeb &&
+        SharedPreferencesStorePlatform.instance
+            is MethodChannelSharedPreferencesStore) {
+      if (Platform.isLinux) {
+        SharedPreferencesStorePlatform.instance = SharedPreferencesLinux();
+      } else if (Platform.isWindows) {
+        SharedPreferencesStorePlatform.instance = SharedPreferencesWindows();
+      }
+    }
+    _manualDartRegistrationNeeded = false;
+  }
+
+  return SharedPreferencesStorePlatform.instance;
+}
+```
+
+可以看出 _store 是个平台化的 Sp 实例，在不同的平台下，会创建不同类型的实例，如 linux 下，是 `SharedPreferencesLinux`,  windows 下，是 `SharedPreferencesWindows`，Android 和 iOS 下 是 `MethodChannelSharedPreferencesStore`，Web 里是 `SharedPreferencesPlugin`，，它们都是 `SharedPreferencesStorePlatform` 的子类。
+
+我们来看看各个平台下 `getAll` 方法的实现，以此来理解各个平台下实现持久化的机制：
+
+**Android & iOS: MethodChannelSharedPreferencesStore**
+
+```dart
+@override
+Future<Map<String, Object>> getAll() async {
+  final Map<String, Object>? preferences =
+      await _kChannel.invokeMapMethod<String, Object>('getAll');
+
+  if (preferences == null) return <String, Object>{};
+  return preferences;
+}
+```
+
+可以看到是通过 MethodChannel 调用 Android 中 SharedPreferences 或者 iOS 中 NSUserDefaults 的相关 API 来实现的。
+
+**Windows: SharedPreferencesWindows**
+
+```dart
+@override
+Future<Map<String, Object>> getAll() async {
+  return _readPreferences();
+}
+
+Future<Map<String, Object>> _readPreferences() async {
+	// 如果有内存 cache，直接返回内存 cache
+  if (_cachedPreferences != null) {
+    return _cachedPreferences!;
+  }
+  Map<String, Object> preferences = {};
+ 	// 是打开系统文件的
+  final File? localDataFile = await _getLocalDataFile();
+  if (localDataFile != null && localDataFile.existsSync()) {
+    String stringMap = localDataFile.readAsStringSync();
+    if (stringMap.isNotEmpty) {
+      preferences = json.decode(stringMap).cast<String, Object>();
+    }
+  }
+  _cachedPreferences = preferences;
+  return preferences;
+}
+```
+
