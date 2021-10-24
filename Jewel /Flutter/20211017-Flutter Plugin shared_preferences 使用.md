@@ -19,3 +19,15 @@ SharedPreferences prefs = await SharedPreferences.getInstance();
 
 3. 调用 SharedPreferences 的读写方法
 
+```dart
+/// 读方法
+
+// 返回所有的key
+Set<String> getKeys();
+// 返回一个key的值，不确定类型
+Object? get(String key);
+// 返回一个bool类型的值，不是bool类型会抛出异常
+bool? getBool(String key);
+
+```
+
