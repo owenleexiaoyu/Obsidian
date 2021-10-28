@@ -6,36 +6,78 @@
 
 ```dart
 class ResponsiveColumn extends StatelessWidget {
-  const ResponsiveColumn({Key? key, required this.children}) : super(key: key);
+  
+  const ResponsiveColumn({Key? key, required this.children});
 
   final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
-    // 通过 LayoutBuilder 拿到父组件传递的约束，然后判断 maxWidth 是否小于200
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < 200) {
-          // 最大宽度小于200，显示单列
-          return Column(children: children, mainAxisSize: MainAxisSize.min);
-        } else {
-          // 大于200，显示双列
-          var _children = <Widget>[];
-          for (var i = 0; i < children.length; i += 2) {
-            if (i + 1 < children.length) {
-              _children.add(Row(
-                children: [children[i], children[i + 1]],
-                mainAxisSize: MainAxisSize.min,
-              ));
-            } else {
-              _children.add(children[i]);
-            }
+        builder: (BuildContext context, BoxConstraints constraints) {
+      // 这里可以获取到 BoxConstraints 对象，拿到约束信息
+      if (constraints.maxWidth < 200) {
+        return Column(
+          children: children,
+          mainAxisSize: MainAxisSize.min,
+        );
+      } else {
+        var _children = <Widget>[];
+        for (int i = 0; i < children.length; i += 2) {
+          if (i + 1 < children.length) {
+            _children.add(Row(
+              children: [
+                children[i],
+                children[i + 1],
+              ],
+              mainAxisSize: MainAxisSize.min,
+            ));
+          } else {
+            _children.add(children[i]);
           }
-          return Column(children: _children, mainAxisSize: MainAxisSize.min);
         }
-      },
-    );
+        return Column(
+          children: _children,
+          mainAxisSize: MainAxisSize.min,
+        );
+      }
+    });
   }
 }
 ```
 
+来看看使用效果：
+
+```dart
+Column(
+  children: [
+    DescItem("ResponsiveColumn 效果，父容器没有宽度限制"),
+    Container(
+      color: Colors.blue.shade50,
+      child: ResponsiveColumn(children: [
+        Chip(label: Text("Hello Hello Hello Hello")),
+        Chip(label: Text("World")),
+        Chip(label: Text("OwenLee")),
+      ]),
+    ),
+    DescItem("ResponsiveColumn 效果，父容器有 150 宽度限制"),
+    Container(
+      color: Colors.blue.shade50,
+      width: 150,
+      child: ResponsiveColumn(
+          children: [
+            Chip(label: Text("Hello Hello Hello Hello")),
+            Chip(label: Text("World")),
+            Chip(label: Text("OwenLee")),
+          ]
+      ),
+    )
+  ],
+),
+```
+
+运行效果如图：
+
+![ResponsiveColumn](https://gitee.com/owenlee233/image_store/raw/master/202110280846626.png)
+
+第一个
