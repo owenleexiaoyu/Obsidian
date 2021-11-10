@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "随笔/Watch And Read（2021-10）.md",
+            "file": "随笔/Watch And Read（2021-11）.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "随笔/Watch And Read（2021-10）.md",
+                "file": "随笔/Watch And Read（2021-11）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "随笔/Watch And Read（2021-11）.md",
     "随笔/Watch And Read（2021-10）.md",
     "Flutter/20210916-状态管理.md",
     "Flutter/20211025-Flutter  对齐和相对定位.md",
@@ -96,7 +97,6 @@
     "Flutter/20211011-Flutter 2048 游戏.md",
     "Flutter/20211011-Flutter 贪吃蛇游戏.md",
     "Flutter/20211014-Flutter Todo App.md",
-    "Flutter/20211017-Flutter Plugin shared_preferences 使用.md",
-    "Flutter/20211012-Flutter 布局类组件简介.md"
+    "Flutter/20211017-Flutter Plugin shared_preferences 使用.md"
   ]
 }
