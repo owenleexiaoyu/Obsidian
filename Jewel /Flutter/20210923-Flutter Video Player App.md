@@ -18,7 +18,12 @@
 
 
 
+<img src="https://gitee.com/owenlee233/image_store/raw/master/202111120029266.png" alt="videoplayer" style="zoom:33%;" />
+
+
+
+播放器使用了 
+
 这两集视频教程出自 **DBestech** 这个网站中的 [Flutter 教程](https://www.dbestech.com/courses/flutter)，还有一些前置和后置的视频课程，后续可以都跟着学习一下。
 
 这个视频播放器的代码在：[video_player_app](https://github.com/owenleexiaoyu/FlutterCodeLabs/tree/main/video_player_app) 中。
-
