@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Android/Kotlin/Kotlin 修炼手册（1）函数和变量.md",
+            "file": "Android/Kotlin/20190826-Kotlin 修炼手册（1）函数和变量.md",
             "mode": "preview"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android/Kotlin/Kotlin 修炼手册（1）函数和变量.md",
+                "file": "Android/Kotlin/20190826-Kotlin 修炼手册（1）函数和变量.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +88,7 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
-    "Android/Kotlin/Kotlin 修炼手册（1）函数和变量.md",
+    "Android/Kotlin/20190826-Kotlin 修炼手册（1）函数和变量.md",
     "Flutter/20210926-Flutter Food Ordering App UI.md",
     "Flutter/20211017-Flutter Plugin shared_preferences 使用.md",
     "随笔/Watch And Read（2021-11）.md",
