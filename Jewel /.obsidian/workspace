@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter/20211019-Flutter 流式布局.md",
-            "mode": "preview"
+            "file": "随笔/Watch And Read（2021-10）.md",
+            "mode": "source"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/20211019-Flutter 流式布局.md",
+                "file": "随笔/Watch And Read（2021-10）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "随笔/Watch And Read（2021-10）.md",
+    "随笔/Watch And Read（2021-11）.md",
     "Flutter/20211019-Flutter 流式布局.md",
     "Flutter/20211113-变换Transform.md",
     "Android/Kotlin/20190826-Kotlin 修炼手册（1）函数和变量.md",
     "Flutter/20210923-Flutter Video Player App.md",
-    "随笔/Watch And Read（2021-11）.md",
     "随笔/Watch And Read（2021-01）.md",
     "随笔/Obsidian 图床.md",
     "随笔/Obsidian 初体验.md",
-    "随笔/工作杂感：和高职级同事聊天有感.md",
-    "Flutter/20210926-Flutter Food Ordering App UI.md"
+    "随笔/工作杂感：和高职级同事聊天有感.md"
   ]
 }
