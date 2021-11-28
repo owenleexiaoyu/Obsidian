@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Flutter/【TBD】20211025-Flutter 俄罗斯方块游戏.md",
+            "file": "数据结构与算法/【TBD】20210908-扫雷游戏中的算法.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/【TBD】20211025-Flutter 俄罗斯方块游戏.md",
+                "file": "数据结构与算法/【TBD】20210908-扫雷游戏中的算法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,8 @@
   },
   "active": "9da4cd7badde75b8",
   "lastOpenFiles": [
+    "数据结构与算法/【TBD】20210908-扫雷游戏中的算法.md",
+    "随笔/【TBD】工作杂感：和高职级同事聊天有感.md",
     "Flutter/【TBD】20211025-Flutter 俄罗斯方块游戏.md",
     "Flutter/【TBD】20211011-Flutter 贪吃蛇游戏.md",
     "Flutter/【TBD】20211014-Flutter Todo App.md",
@@ -95,8 +97,6 @@
     "Android/Kotlin/20190826-Kotlin 修炼手册（1）函数和变量.md",
     "随笔/Watch And Read（2021-12）.md",
     "随笔/Watch And Read（2021-11）.md",
-    "随笔/Watch And Read（2021-10）.md",
-    "Flutter/20211019-Flutter 流式布局.md",
-    "Flutter/20211113-变换Transform.md"
+    "随笔/Watch And Read（2021-10）.md"
   ]
 }
